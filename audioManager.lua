@@ -1,14 +1,17 @@
 local AudioManager = {}
 local sounds = {}
 
-function AudioManager:loadSources()
-    sounds['soundDrip'] = love.audio.newSource('assets/sounds/drip.wav', 'static')
-    sounds['bgMusic'] = love.audio.newSource('assets/music/violinLoop.ogg', 'stream')
-    sounds['bgMusic']:setLooping(true)
+local function loadSound(name, filename, type)
+    sounds[name] = love.audio.newSource(filename, type or "static")
 end
 
-function AudioManager:loadSound(name, filename, type)
-    sounds[name] = love.audio.newSource(filename, type or "static")
+function AudioManager:setLooping(name, isLooping)
+    sounds[name]:setLooping(isLooping)
+end
+
+function AudioManager:loadSources()
+    loadSound('drip', 'assets/sounds/drip.wav')
+    loadSound('bg', 'assets/music/violinLoop.ogg', 'stream')
 end
 
 function AudioManager:playSound(name)

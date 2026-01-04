@@ -1,8 +1,9 @@
-local Audio = require('audioManager')
+local audio = require('audioManager')
 
 function love.load()
-    Audio:loadSources()
-    Audio:playSound('bgMusic')
+    audio:loadSources()
+    audio:playSound('bg')
+    audio:setLooping('bg', true)
 end
 
 function love.keypressed(key)
